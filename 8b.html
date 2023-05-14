@@ -1,0 +1,156 @@
+ html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reg</title>
+    <style type="text/css">
+        table{
+         margin-top: 10%;
+        margin-left:auto;
+        margin-right:auto;
+        border: 1px solid black;
+        }
+        td,th{
+        padding:10px 20px;
+        text-align:center;
+        }
+        .inptxt{
+        width:100%;
+        }
+        </style>
+    <script>
+        function validate(){
+            var studentname=document.myform.studentname.value;
+            var fathername=document.myform.fathername.value;
+            var mothername=document.myform.mothername.value;
+            var email=document.myform.email.value;
+            var gender=document.myform.gender.value;
+            var date=document.myform.date.value;
+            var level=document.myform.level.value;
+            var atpos=email.indexOf('@');
+            var dotpos=email.indexOf('.');
+            var mobile=document.myform.mobile.value;
+            if(studentname==""){
+                document.getElementById("error").innerHTML="Enter Student name";
+                document.myform.studentname.focus();
+                return false;
+            }
+            
+            if(studentname.length<6){
+                document.getElementById("error").innerHTML="enter Student name greater than 6 letters";
+                document.myform.studentname.focus();
+                return false;
+            }
+            if(fathername==""){
+                document.getElementById("error").innerHTML="Enter Father name";
+                document.myform.fathername.focus();
+                return false;
+            }
+            if(fathername.length<6){
+                document.getElementById("error").innerHTML="enter Father name greater than 6 letters";
+                document.myform.fathername.focus();
+                return false;
+            }
+            if(mothername==""){
+            document.getElementById("error").innerHTML="Enter Mother Student name";
+            document.myform.mothername.focus();
+            return false;
+        }
+        if(mothername.length<6){
+            document.getElementById("error").innerHTML="enter Mother name greater than 6 letters";
+            document.myform.mothername.focus();
+            return false;
+        }
+        if(gender==""){
+            document.getElementById("error").innerHTML="select gender";
+            document.myform.mothername.focus();
+            return false;
+        }
+        if(date==""){
+            document.getElementById("error").innerHTML="select date";
+            document.myform.mothername.focus();
+            return false;
+        }
+        if(email==""){
+            document.getElementById("error").innerHTML="Email Can't be empty";
+            document.myform.email.focus();
+            return false;
+        }
+        if(atpos==0 || dotpos-atpos<=2 || email.length-dotpos<=2){
+            document.getElementById("error").innerHTML="Enter valid Email";
+            document.myform.email.focus();
+            return false;
+        }
+        if(level==""){
+            document.getElementById("error").innerHTML="select level of education";
+            document.myform.level.focus();
+            return false;
+        }
+        if(mobile.length!=10){
+        	document.getElementById("error").innerHTML="Enter Phone Number";
+            document.myform.mobile.focus();
+            return false;
+        }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<form action="validation.jsp" name="myform" method="post" onsubmit="return validate()">
+    <table>
+    
+        <tr><th colspan=2>STUDENT REGISTRATION</th></tr>
+        <tr>
+            <td>Student Name:</td><td> 
+            <input type="text" name="studentname" class="inptxt"></td>
+        </tr> 
+
+        <tr>
+            <td>Father Name:</td>
+            <td><input type="text" name="fathername" class="inptxt"></td>
+        </tr>
+        <tr>
+            <td>Mother Name:</td>
+            <td> <input type="text" name="mothername" class="inptxt"></td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td><input type="radio" name="gender" value="male">male  <input type="radio" name="gender" value="female">female <input type="radio" name="gender" value="others">others</td>
+        </tr>
+        <tr>
+            <td>Date of Birth:</td>
+            <td> <input type="date" name="date" class="inptxt"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td> <input type="text" name="email" class="inptxt"></td>
+        </tr>
+        <tr>
+            <td>Level:</td>
+            <td>
+                <select id="cars" name="level" class="inptxt">
+                    <option value=""></option>
+                      <option value="primary">Primary</option>
+                      <option value="secondary">Secondary</option>
+                      <option value="intermidiate">Intermediate</option>
+                     <option value="under graduation">Under Graduation</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Mobile: </td>
+            <td><input type="number" name="mobile" class="inptxt"></td>
+        </tr>
+        <tr><td colspan=2><p id="error" style="color: red;"></p></td></tr>
+        <tr>
+	        <td><input type="reset" value="reset"></td>
+	        <td><input type="submit" value="submit"></td>
+        </tr>
+        
+    
+    </table>
+    </form>
+</body>
+</html>
