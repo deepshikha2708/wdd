@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reading XML with JavaScript</title>
+    <style>
+        /* Styles for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th {
+  text-align: left;
+  background-color: #ddd;
+  font-weight: bold;
+  padding: 10px;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* Styles for the page header */
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the XML loading message */
+.loading-message {
+  font-style: italic;
+  color: gray;
+}
+
+    </style>
+</head>
+<body>
+
+	<h1>Bookstore</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Author</th>
+				<th>Year</th>
+				<th>Category</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody id="book-table">
+		</tbody>
+	</table>
+
+	<script>
+		// Fetch the XML file
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				// Parse the XML content
+				var parser = new DOMParser();
+				var xml = parser.parseFromString(this.responseText,"text/xml");
+
+				// Get the books from the XML file
+				var books = xml.getElementsByTagName("book");
+
+				// Add each book to the table
+				var table = document.getElementById("book-table");
+				for (var i = 0; i < books.length; i++) {
+					var book = books[i];
+					var title = book.getElementsByTagName("title")[0].textContent;
+					var author = book.getElementsByTagName("author")[0].textContent;
+					var year = book.getElementsByTagName("year")[0].textContent;
+					var category = book.getAttribute("category");
+					var price = book.getElementsByTagName("price")[0].textContent;
+
+					var row = table.insertRow();
+					row.insertCell().innerHTML = title;
+					row.insertCell().innerHTML = author;
+					row.insertCell().innerHTML = year;
+					row.insertCell().innerHTML = category;
+					row.insertCell().innerHTML = price;
+				}
+			}
+		};
+		xhttp.open("GET", "test.xml", true);
+		xhttp.send();
+	</script>
+
+</body>
+</html>
