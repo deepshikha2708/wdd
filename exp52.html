@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee Survey Form</title>
+</head>
+<body>
+
+  <form onsubmit="calculateSalary(); return false;" align="center">
+  <label for="employee-name">Employee Name:</label>
+  <input type="text" id="employee-name" name="employee-name" required align="center">
+  <br>
+
+  <label for="employee-id">Employee ID:</label>
+  <input type="text" id="employee-id" name="employee-id" required align="center">
+  <br>
+
+  <label for="basic-pay">Basic Pay:</label>
+  <input type="number" id="basic-pay" name="basic-pay" required align="center">
+  <br>
+
+  <input type="submit" value="Submit" align="center">
+</form>
+<br>
+
+<table border = "1" style="background-color: lightcoral; border-color: aqua;" align="center" width="500" height="500">
+  <tr>
+    <th>Component</th>
+    <th>Amount</th>
+  </tr>
+  <tr>
+    <td>Basic Pay</td>
+    <td id="basic-pay-result"></td>
+  </tr>
+  <tr>
+    <td>DA (10%)</td>
+    <td id="da"></td>
+  </tr>
+  <tr>
+    <td>HRA (8%)</td>
+    <td id="hra"></td>
+  </tr>
+  <tr>
+    <td>Gross Pay</td>
+    <td id="gross-pay"></td>
+  </tr>
+  <tr>
+    <td>PF (12%)</td>
+    <td id="pf"></td>
+  </tr>
+  <tr>
+    <td>TAX (5%)</td>
+    <td id="tax"></td>
+  </tr>
+  <tr>
+    <td>Deduction</td>
+    <td id="deduction"></td>
+  </tr>
+  <tr>
+    <td>Net Pay</td>
+    <td id="net-pay"></td>
+  </tr>
+</table>
+
+<script>
+  function calculateSalary() {
+    // Get the basic pay from the input field
+    const basicPay = parseFloat(document.getElementById("basic-pay").value);
+
+    // Define the percentages for DA, HRA, PF, and TAX
+    const daPercentage = 0.10;
+    const hraPercentage = 0.08;
+    const pfPercentage = 0.12;
+    const taxPercentage = 0.05;
+
+    // Calculate the values of DA, HRA, PF, TAX, and Gross pay
+    const da = basicPay * daPercentage;
+    const hra = basicPay * hraPercentage;
+    const pf = basicPay * pfPercentage;
+    const grossPay = basicPay + da + hra;
+
+    // Calculate the value of TAX and Deduction
+    const tax = grossPay * taxPercentage;
+    const deduction = pf + tax;
+
+    // Calculate the value of Net pay
+    const netPay = grossPay - deduction;
+
+    // Display the results in the table
+    document.getElementById("basic-pay-result").innerHTML = basicPay.toFixed(2);
+    document.getElementById("da").innerHTML = da.toFixed(2);
+    document.getElementById("hra").innerHTML = hra.toFixed(2);
+    document.getElementById("gross-pay").innerHTML = grossPay.toFixed(2);
+    document.getElementById("pf").innerHTML = pf.toFixed(2);
+    document.getElementById("tax").innerHTML = tax.toFixed(2);
+    document.getElementById("deduction").innerHTML = deduction.toFixed(2);
+    document.getElementById("net-pay").innerHTML = netPay.toFixed(2);
+  }
+</script>
+</body>
+ </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="calculatorApp">
+<head>
+    <title>AngularJS Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        button {
+            display: inline-block;
+            width: 50%;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator" ng-controller="calculatorCtrl">
+    <input type="number" ng-model="num1">
+    <input type="number" ng-model="num2">
+    <br>
+    <button ng-click="add()">Add</button>
+    <button ng-click="subtract()">Subtract</button>
+    <button ng-click="multiply()">Multiply</button>
+    <button ng-click="divide()">Divide</button>
+    <br>
+    <h3>Result: {{result}}</h3>
+</div>
+
+<script>
+    var app = angular.module("calculatorApp", []);
+    app.controller("calculatorCtrl", function ($scope) {
+        $scope.add = function () {
+            $scope.result = $scope.num1 + $scope.num2;
+        };
+        $scope.subtract = function () {
+            $scope.result = $scope.num1 - $scope.num2;
+        };
+        $scope.multiply = function () {
+            $scope.result = $scope.num1 * $scope.num2;
+        };
+        $scope.divide = function () {
+            $scope.result = $scope.num1 / $scope.num2;
+        };
+    });
+</script>
+
+</body>
+</html>
