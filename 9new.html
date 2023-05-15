@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Example with text file</title>
+</head>
+
+<body>
+
+
+    <h1>This is Ajax Example</h1>
+
+    <button type="button" onclick="dataLoad()">Click here to load data</button>
+
+    <h3>
+        <pre id="content"></pre>
+                                                                    
+    </h3>
+
+   
+
+
+    <script>
+
+
+        function dataLoad() {
+            var xhttp = new XMLHttpRequest;
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("content").innerHTML = this.responseText;
+                }
+            }
+            xhttp.open("GET", "message.txt", true);
+            xhttp.send();
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
